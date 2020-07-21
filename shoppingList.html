@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping List</title>
+  </head>
+  <body>
+    <h1>My shopping List</h1>
+    <form onsubmit="displayItem()">
+      <label for="items">
+        Enter items
+        <input type="text" id="items" />
+        <button type="submit">Submit</button>
+      </label>
+    </form>
+    <ul></ul>
+
+    <script>
+      let itemValue = document.querySelector("input");
+      let inputArea = document.querySelector("ul");
+      function displayItem() {
+        let btn = document.createElement("button");
+        let spn = document.createElement("span");
+        let lst = document.createElement("li");
+        spn.textContent = itemValue.value;
+        btn.innerText = "Delete";
+        spn.appendChild(btn);
+        lst.appendChild(spn);
+        inputArea.appendChild(lst);
+
+        btn.onclick = function (e) {
+          lst.remove(e);
+        };
+      }
+    </script>
+  </body>
+</html>
