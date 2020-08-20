@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scirrors</title>
+  </head>
+  <body>
+    <script>
+      function computerPlay() {
+        let choice = ["Rock", "Paper", "Scissor"];
+        return choice[Math.floor(Math.random() * choice.length)].toUpperCase();
+      }
+
+      function playerSelection() {
+        let option = prompt("Choose your weapon: [Rock] [Paper] [Scissor]");
+        return option.toUpperCase();
+      }
+
+      let playGame = (computerPlay, playerSelection) => {
+        switch (computerPlay) {
+          case "ROCK":
+            if (playerSelection === "PAPER")
+              return "Win - Computer chose " + computerPlay;
+            else if (playerSelection === "SCISSOR")
+              return "Lose -Computer chose " + computerPlay;
+            return "Draw - Both chose " + playerSelection;
+
+          case "PAPER":
+            if (playerSelection === "PAPER")
+              return "Draw - Both chose " + playerSelection;
+            else if (playerSelection === "SCISSOR")
+              return "Win - Computer chose " + computerPlay;
+            return "Lose - Computer chose " + computerPlay;
+
+          case "SCISSOR":
+            if (playerSelection === "PAPER")
+              return "Lose - Computer chose " + computerPlay;
+            else if (playerSelection === "SCISSOR")
+              return "Draw - Both chose " + playerSelection;
+            return "Win - Computer chose " + computerPlay;
+        }
+      };
+
+      let game = function (round) {
+        let playerScore = 0,
+          computerScore = 0;
+        for (let i = 0; i < round; i++) {
+          let play = playGame(computerPlay(), playerSelection());
+
+          console.log(play);
+          if (play.split(" ")[0] === "Draw") {
+            playerScore++;
+            computerScore++;
+          } else if (play.split(" ")[0] === "Win") playerScore++;
+          else computerScore++;
+        }
+        console.log(
+          "Winner is " +
+            (playerScore > computerScore
+              ? "Player with " + playerScore + " points"
+              : "Computer with " + computerScore + " points")
+        );
+      };
+      let rounds = prompt("How many rounds do you wish to play ? ");
+      // let p = playGame(computerPlay(), playerSelection());
+
+      game(rounds);
+    </script>
+  </body>
+</html>
